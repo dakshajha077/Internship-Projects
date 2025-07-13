@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ShopFlix - E-Commerce</title>
+  <link rel="stylesheet" href="shopstyle.css" />
+</head>
+<body>
+
+<header><h1>ShopFlix</h1></header>
+
+<nav>
+  <div class="nav-left">
+    <button class="menu-button" onclick="toggleMenu()">☰</button>
+    <div id="dropdown-menu" class="dropdown-hidden">
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+      <a href="#" onclick="openAdminPopup()">Admin Panel</a>
+    </div>
+  </div>
+
+  <div class="nav-center">
+    <a href="#smartphone-variants">Smartphones</a>
+    <a href="#headphone-variants">Headphones</a>
+    <a href="#grocery-variants">Groceries</a>
+    <a href="#medicine-variants">Medicine</a>
+  </div>
+
+  <div class="nav-right">
+    <button class="login-button" onclick="openLoginPopup()">🔒 Login</button>
+  </div>
+</nav>
+
+<section id="home">
+  <h1>Welcome to ShopFlix</h1>
+  <p><b>Your ultimate online shopping destination with unbeatable deals and top brands.</b></p>
+  <input id="searchInput" class="home-search" type="text" placeholder="Search products..." onkeyup="searchProducts()" />
+</section>
+
+<section id="products">
+  <h2>Smartphone</h2><div id="smartphone-variants" class="product-variants"></div>
+  <h2>Headphones</h2><div id="headphone-variants" class="product-variants"></div>
+  <h2>Groceries</h2><div id="grocery-variants" class="product-variants"></div>
+  <h2>Medicine</h2><div id="medicine-variants" class="product-variants"></div>
+</section>
+
+<section id="about"><h2>About Us</h2><p>We bring top products at great deals.</p></section>
+<section id="contact"><h2>Contact Us</h2><form><input type="text" placeholder="Your Name"><input type="email" placeholder="Your Email"><textarea placeholder="Message"></textarea><button>Send</button></form></section>
+<div id="cart-panel">
+  <h3>Your Cart</h3>
+  <ul id="cart-items"></ul>
+  <p>Total: ₹<span id="cart-total">0</span></p>
+  <button class="finish" onclick="checkout()">Finish Shopping</button>
+</div>
+
+<div id="thank-you-popup" class="hidden-popup">
+  <div class="popup-content">
+    <p>Thank you for shopping. Please come again!</p>
+    <button onclick="closePopup()">Close</button>
+  </div>
+</div>
+
+<div id="admin-popup" class="hidden-popup">
+  <div class="popup-content">
+    <h2>Add New Product</h2>
+    <form id="admin-form" onsubmit="handleAdminSubmit(event)">
+      <input id="admin-name" type="text" placeholder="Product Name" required />
+      <input id="admin-price" type="text" placeholder="Price (₹)" required />
+      <input id="admin-img" type="text" placeholder="Image URL" required />
+      <select id="admin-category" required>
+        <option value="" disabled selected>Choose category</option>
+        <option value="smartphone">Smartphone</option>
+        <option value="headphone">Headphone</option>
+        <option value="grocery">Grocery</option>
+        <option value="medicine">Medicine</option>
+      </select>
+      <div class="popup-buttons">
+        <button type="submit">Add</button>
+        <button type="button" onclick="closeAdminPopup()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div id="login-popup" class="hidden-popup">
+  <div class="popup-content">
+    <h2>User Login</h2>
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <input id="login-email" type="email" placeholder="Email" required />
+      <input id="login-password" type="password" placeholder="Password" required />
+      <div class="popup-buttons">
+        <button type="submit">Login</button>
+        <button type="button" onclick="closeLoginPopup()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer>&copy; 2025 ShopFlix. All rights reserved.</footer>
+
+<script src="shopscript.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

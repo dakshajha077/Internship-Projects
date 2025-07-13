@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WeTube</title>
+  <link rel="stylesheet" href="Videostyle.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="header">
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <div class="hamburger" id="hamburger">☰</div>
+      <div class="site-title">WeTube</div>
+    </div>
+    <div class="nav-options">
+      <a href="#">Trending</a>
+      <a href="#">Music</a>
+      <a href="#">News</a>
+      <a href="#">Sports</a>
+      <a href="#">Education</a>
+    </div>
+    <div class="header-right">
+      <input type="text" id="search" placeholder="Search...">
+      <div class="login-icon" id="loginBtn">👤</div>
+    </div>
+  </div>
+  <div class="sidebar" id="sidebar" style="display: block;">
+    <a id="navHome">Home</a>
+    <a id="navLibrary">Library</a>
+    <a id="navLiked">Liked Videos</a>
+    <a id="navLater">Watch Later</a>
+    <a id="navSubs">Subscriptions</a>
+    <a id="openSettings">Settings</a>
+    <a id="openHelp">Help</a>
+  </div>
+  <div class="content-area" id="contentArea">
+    <div class="video-grid" id="videoGrid"></div>
+  </div>
+  <div id="settingsPopup" class="popup">
+    <h3>Settings</h3>
+    <div class="setting-option">Autoplay: On</div>
+    <div class="setting-option">Notifications: Off</div>
+    <div class="setting-option">Video Quality: Auto</div>
+    <div class="setting-option">Theme: Dark</div>
+    <div class="setting-option">Subtitles: On</div>
+    <div class="setting-option">Restricted Mode: Off</div>
+    <div class="setting-option">Comments: Enabled</div>
+    <div class="setting-option">History: Enabled</div>
+    <button onclick="closePopup('settingsPopup')">Close</button>
+  </div>
+  <div id="helpPopup" class="popup">
+    <h3>Help / Feedback</h3>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea rows="4" placeholder="Your Complaint"></textarea>
+    <button>Submit</button>
+    <button onclick="closePopup('helpPopup')">Close</button>
+  </div>
+  <div id="loginPopup" class="popup">
+    <h3>Login</h3>
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
+    <button>Submit</button>
+    <button onclick="closePopup('loginPopup')">Close</button>
+  </div>
+  <script src="Videoscript.js"></script>
+</body>
+</html>
+
+
+
+
+

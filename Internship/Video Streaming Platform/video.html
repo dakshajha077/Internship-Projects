@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WeTube - Watch</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background-color: #121212;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    .main-video {
+      width: 100%;
+      max-width: 960px;
+      position: relative;
+    }
+    .main-video video {
+      width: 100%;
+      border: 4px solid red;
+      box-shadow: 0 0 20px red;
+      border-radius: 8px;
+    }
+    .video-title-overlay {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 18px;
+      font-weight: 600;
+      color: red;
+      z-index: 10;
+      text-align: center;
+    }
+    .video-meta {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .video-meta p {
+      margin: 6px 0;
+    }
+    .suggested {
+      width: 100%;
+      max-width: 960px;
+      margin-top: 30px;
+    }
+    .suggested h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      border-bottom: 2px solid red;
+      padding-bottom: 5px;
+    }
+    .suggested-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      background-color: #1e1e1e;
+      border-radius: 6px;
+      padding: 5px;
+      transition: background 0.3s;
+    }
+    .suggested-item:hover {
+      background-color: #2b2b2b;
+    }
+    .suggested-item video {
+      width: 120px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .suggested-info h4 {
+      font-size: 14px;
+      margin: 0;
+    }
+    .suggested-info p {
+      font-size: 12px;
+      color: gray;
+      margin: 4px 0 0;
+    }
+    @media (max-width: 768px) {
+      .video-title-overlay {
+        font-size: 16px;
+        padding: 8px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main-video" id="mainVideoContainer"></div>
+    <div class="suggested">
+      <h3>Suggested</h3>
+      <div id="suggestedContainer"></div>
+    </div>
+  </div>
+  <script>
+    const videos = JSON.parse(localStorage.getItem('videos') || '[]');
+    const params = new URLSearchParams(window.location.search);
+    const videoId = parseInt(params.get('id')) || 0;
+    const mainContainer = document.getElementById('mainVideoContainer');
+    const suggestedContainer = document.getElementById('suggestedContainer');
+    if (videos[videoId]) {
+      const vid = videos[videoId];
+      mainContainer.innerHTML = `
+        <div class="video-title-overlay">${vid.title}</div>
+        <video controls autoplay>
+          <source src="${vid.src}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="video-meta">
+          <p>${vid.date} • ${vid.views} views</p>
+          <p>👍 234K &nbsp;&nbsp; 👎 3.1K</p>
+        </div>
+      `;
+    }
+    const suggested = videos.filter((_, i) => i !== videoId).slice(0, 5);
+    suggested.forEach((vid, i) => {
+      const div = document.createElement('div');
+      div.className = 'suggested-item';
+      div.innerHTML = `
+        <video src="${vid.src}" muted></video>
+        <div class="suggested-info">
+          <h4>${vid.title}</h4>
+          <p>${vid.date} • ${vid.views} views</p>
+        </div>
+      `;
+      div.onclick = () => {
+        window.location.href = `video.html?id=${videos.indexOf(vid)}`;
+      };
+      suggestedContainer.appendChild(div);
+    });
+  </script>
+</body>
+</html>
